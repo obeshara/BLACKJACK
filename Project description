@@ -1,0 +1,15 @@
+This project involves coding the infamous game of Black Jack which will implement a GUI with certain AI attributes
+as one of the options of the game will be to play against the computer. 
+Moreover, the game will have two choices for each player, it is to either “hit” or “stand”. 
+Each turn, the game will generate a randomly suffled set of cards and any play that generates a value of cards above 21 causes
+that player to lose the game. 
+It will involve multiple libraries such as Python’s random library to produce a random set of cards, 
+pygame which aids in programming video games specifically, 
+perhaps the sys library, 
+as well as the os library. 
+All of that together will be implemented with a GUI that tells the user if they won or lost. 
+It displays a Green themed background to the user with a set of cards on opposite sides - randomly shuffled of course. 
+By November 25, I hope to finish the logic of the game such as the random shuffle function, 
+defining when a player wins or loses, implementing the different symbols (e.g. diamonds) and numbers of the cards.
+As for the final features, I hope to finish the GUI aspect of the game by DEC 6, and I may end up adding some sound effects
+for the shuffling of the cards. 
