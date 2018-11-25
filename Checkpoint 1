@@ -1,0 +1,80 @@
+import random
+import os
+import sys
+import pygame
+from pygame.locals import *
+pygame.init()
+window = pygame.display.set_mode((1200,800))
+clock = pygame.time.Clock()
+pygame.font.init()
+pygame.mixer.init()
+def game():#function for logic behind the blackjack game
+    def creatingTheDeck():
+        deck = ['heartJack','heartQueen','heartKing','heartAce',
+                'spadeJack','spadeQueen','spadeKing','spadeAce',
+                'clubJack','clubQueen','clubKing','clubAce',
+                'diamondJack','diamondQueen','diamondKing','diamondAce']
+        numbers = range(2,11)#setting the variable for the numbered cards
+        for i in numbers:#attaching symbol to numerical value
+            spades = "spade" + str(x)
+            hearts = "heart" + str(x)
+            diamonds = "diamond" + str(x)
+            clubs = "club" + str(x)
+            deck.append(spades)
+            deck.append(hearts)
+            deck.append(diamonds)
+            deck.append(clubs)
+        return deck
+    def shufflingTheDeck(deck):
+        l = len(deck) - 1
+        while l > 0:#while the deck is greater than 0, random n will be generated
+            n = random.randint(0,n)
+            deck[n], deck[l] = deck[l], deck[n] #swapping the two elements
+            #then decreasing n by 1
+            n -= 1
+        return deck
+    def gameOver():#Function that says game over when the player's money runs out
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    sys.exit()
+                if event.type == KEYDOWN and event.key == K_ESCAPE:
+                    sys.exit()
+            message = pygame.font.Font(None,80)
+            onScreenMessage = pygame.font.Font.render(message,"Game Over, you ran out of funds!",1,(255,255,255))
+            screen.blit(onScreenMessage,(250,500))
+            pygame.display.flip()
+    def returnOldDeck(deck, oldDeck):#Adds the cards from the old deck to the deck being used on the table
+        for card in oldDeck:
+            deck.append(card)
+        oldDeck = None
+        deck = shufflingTheDeck(deck)
+        return deck, oldDeck
+    def dealtDeck(deck, remainingCards):#function that distributes 4 cards equally to the player and dealer and returns them. 
+        deck = shufflingTheDeck(deck)
+        cardsOnTable = 4
+        dealer = []
+        player = []
+        while cardsOnTable > 0:
+            if len(deck) == 0:
+                deck, oldDeck = returnOldDeck(deck, oldDeck)
+            if cardsOnTable % 2 == 0:
+                player.append(deck[0])
+            else:
+                dealer.append(deck[0])
+            deck[0] = None
+            cardsOnTable -= 1
+        return deck, oldDeck, player, dealer
+    def checkingTheCard(cards):
+        total = 0
+        for card in cards:
+            number = card[1:]
+            if number == "Jack" or "Queen" or "King":
+                number = 10
+            elif number == "Ace":
+                number = 11
+            else:
+                number = int(number)
+            total += number
+        if total > 21:
+            for card in cards:
