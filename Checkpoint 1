@@ -2,7 +2,6 @@ import random
 import os
 import sys
 import pygame
-from pygame.locals import *
 pygame.init()
 window = pygame.display.set_mode((1200,800))
 clock = pygame.time.Clock()
