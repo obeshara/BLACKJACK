@@ -78,3 +78,8 @@ def game():#function for logic behind the blackjack game
             total += number
         if total > 21:
             for card in cards:
+                if total <= 21:
+                    sys.exit()
+                else:
+                    continue
+        return value
